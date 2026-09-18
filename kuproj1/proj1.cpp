@@ -1,17 +1,20 @@
 #include <iostream>
 #include <cstdint>
 #include <string>
+#include <cfloat>
+#include <cmath>
 using namespace std;
 
 string vardas;
 uint32_t amzius;
-float kaina;
+float_t kaina;
 char16_t raide;
 
 int main() {
     vardas = "Ona";
-    amzius = 20;
+    amzius = 20u;
     kaina = 1.65f;
     raide = 'O';
+    cout << kaina;
     return 0;
 }
