@@ -3,6 +3,8 @@
 #include <string>
 #include <cfloat>
 #include <cmath>
+
+#define FLT_EVAL_METHOD 0
 using namespace std;
 
 string vardas;

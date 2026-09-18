@@ -3,6 +3,7 @@
 #include <cfloat>
 #include <cmath>
 
+#define FLT_EVAL_METHOD 0
 using namespace std;
 
 float_t svoris;
