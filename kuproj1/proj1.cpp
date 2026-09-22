@@ -8,7 +8,7 @@
 using namespace std;
 
 string vardas;
-uint32_t amzius;
+uint8_t amzius;
 float_t kaina;
 char16_t raide;
 
@@ -17,6 +17,5 @@ int main() {
     amzius = 20u;
     kaina = 1.65f;
     raide = 'O';
-    cout << kaina;
     return 0;
 }

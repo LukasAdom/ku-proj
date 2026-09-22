@@ -20,5 +20,6 @@ cout << "iveskite ugi (m): ";
 
 KMI = (svoris/pow(ugis, 2u));
     cout << "Jusu KMI yra: " << KMI;
+
 return 0;
 }
