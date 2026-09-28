@@ -4,11 +4,11 @@
 #include <cfloat>
 #include <cmath>
 
-#define FLT_EVAL_METHOD 0
+#define __FLT_EVAL_METHOD__ 0
 using namespace std;
 
 string vardas;
-uint8_t amzius;
+uint16_t amzius;
 float_t kaina;
 char16_t raide;
 
