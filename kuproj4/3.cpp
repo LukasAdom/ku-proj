@@ -12,8 +12,7 @@ int main(){
     cout << "\n";
     cout << "Pirminiai skaiciai nuo 1 iki " << N << ":" << endl;
 
-    // skaudu ziureti i sita
-    // bet cia paprastas algoritmas surasti visus pirminius skaicius
+    // Optimized algorithm to find prime numbers :)
     for(uint32_t i{0uz}; i<N; i++){
         cnt = 0u;
 
