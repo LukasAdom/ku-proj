@@ -8,7 +8,7 @@ using namespace std;
 
 int main(){
     uint16_t n;
-    uint16_t result;
+    uint32_t result;
 
     cout << "iveskite N: ";
     cin >> n;
