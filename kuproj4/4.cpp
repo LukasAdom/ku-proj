@@ -34,7 +34,7 @@ int main(){
 
     uint16_t vid;
     uint16_t sum;
-    float_t fpassed = 0.f;
+    float_t fpassed;
     
     char answer;
 
@@ -57,7 +57,7 @@ int main(){
                 ffailed = (float_t)failed;
                 fcnt = (float_t)cnt;
 
-                fpassed += 100.f - (((ffailed * 1.f)/(ffailed+fcnt * 1.f))*100.f);
+                fpassed = 100.f - (((ffailed * 1.f)/(ffailed+fcnt * 1.f))*100.f);
 
                 cout << "Klases vidurkis: " << vid << endl;
                 cout << "Geriausias balas: " << visuBalai.back() << endl;
