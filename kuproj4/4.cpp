@@ -10,6 +10,7 @@ using namespace std;
 
 char Y = 'Y';
 
+// Lowers and compares 2 chars //
 bool checkch(char& ch1, char& ch2){
         if(char(tolower(ch1)) != char(tolower(ch2))){
             return false;
@@ -43,7 +44,8 @@ int main(){
             cout << "Ar suvesti dar viena? (Y/N) ";
                 cin >> answer;
                 cout << "\n";
-
+                
+                // Shows all of the results then quits //
             if(!checkch(answer,Y)){
                 visuBalai.sort();
 
@@ -70,11 +72,12 @@ int main(){
             cout << "Opps neislaikiusiuju skaicius pasiekia 5 :(\n";
             break;
         }
-
+            
+        // Main function start here //
     cout << "Iveskite studento bala: ";
     cin >> balai;
 
-    cnt++;
+    cnt++; // Counter for students
         if(balai < 0.f || balai > 100.f){
             cout << "Opps you entered an number either too large or too small!";
             break;
