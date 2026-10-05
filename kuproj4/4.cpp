@@ -77,11 +77,11 @@ int main(){
     cout << "Iveskite studento bala: ";
     cin >> balai;
 
-    cnt++; // Counter for students
         if(balai < 0.f || balai > 100.f){
-            cout << "Opps you entered an number either too large or too small!";
-            break;
+            cout << "Opps you entered an number either too large or too small!\n\n";
+            continue;
         }
+    cnt++; // Counter for students
 
         
         fpazymys = ceil((balai + 1.f)/10.f);
