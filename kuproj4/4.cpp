@@ -57,8 +57,8 @@ int main(){
                 ffailed = (float_t)failed;
                 fcnt = (float_t)cnt;
 
-                fpassed = 100.f - (((ffailed * 1.f)/(ffailed+fcnt * 1.f))*100.f);
-
+                fpassed = 100.f - (((ffailed)/(fcnt))*100.f);
+                
                 cout << "Klases vidurkis: " << vid << endl;
                 cout << "Geriausias balas: " << visuBalai.back() << endl;
                 cout << "Blogiausias balas: " << visuBalai.front() << endl;
