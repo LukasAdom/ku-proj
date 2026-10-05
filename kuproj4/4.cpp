@@ -4,11 +4,14 @@
 #include <cmath>
 #include <list>
 #include <cfloat>
+#include <algorithm>
 
 #define __FLT_EVAL_METHOD__ 0
 using namespace std;
 
 char Y = 'Y';
+const float_t&& lowP = 1.f;
+const float_t highP = 10.f;
 
 // Lowers and compares 2 chars //
 bool checkch(char& ch1, char& ch2){
@@ -85,6 +88,7 @@ int main(){
 
         
         fpazymys = ceil((balai + 1.f)/10.f);
+        fpazymys = clamp(fpazymys,lowP,highP);
 
         if(fpazymys <= 5.f){
             cout << "Studentas neislaike :(\n";

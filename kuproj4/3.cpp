@@ -16,17 +16,17 @@ int main(){
     for(uint32_t i{0uz}; i<N; i++){
         cnt = 0u;
 
-        if(i <= 1){
+        if(i <= 1u){
             continue;
         } else {
             for(uint32_t k{2uz}; k * k <= i; k++){
-                if(i%k == 0){
+                if(i%k == 0u){
                     cnt++;
                     continue;
                 }
             }
 
-            if(cnt > 0){
+            if(cnt > 0u){
                 continue;
             } else {
                 

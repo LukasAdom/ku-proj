@@ -19,7 +19,7 @@ int main(){
         if(i%3u == 0u){
             cout << "Fizz\n";
         continue;
-        } else if(i%5u == 0){
+        } else if(i%5u == 0u){
                 cout << "Buzz\n";
             continue;
         } 
