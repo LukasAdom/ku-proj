@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
     uint32_t N;
-    uint16_t cnt = 0u;
+    uint16_t cnt;
 
     cout << "Iveskite skaiciu: ";
     cin >> N;
