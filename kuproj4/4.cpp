@@ -10,7 +10,7 @@
 using namespace std;
 
 char Y = 'Y';
-const float_t&& lowP = 1.f;
+const float_t lowP = 1.f;
 const float_t highP = 10.f;
 
 // Lowers and compares 2 chars //
