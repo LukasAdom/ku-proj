@@ -22,7 +22,7 @@ bool is_even(const int16_t n){
     return true;
 }
 
-int16_t maximum(int16_t a, int16_t b, int16_t c){ // Takes 3 numbers, return the largest one
+int16_t maximum(const int16_t a, const int16_t b, const int16_t c){ // Takes 3 numbers, return the largest one
     vector<int16_t> vec = {a,b,c};
     cout << __func__ << '(' << a << ", " << b << ", " << c << "): ";
 
@@ -34,12 +34,12 @@ int16_t maximum(int16_t a, int16_t b, int16_t c){ // Takes 3 numbers, return the
     return vec.back();
 }
 
-double_t celsius_to_fahrenheit(double_t c){
+double_t celsius_to_fahrenheit(const double_t c){
     cout << __func__ << '(' << c << "): ";
     return c*9/5+32;
 }
 
-int16_t clamp(int16_t number, int16_t min, int16_t max){
+int16_t clamp(const int16_t number, const int16_t min, const int16_t max){
     cout << __func__ << '(' << number << ", " << min << ", " << max << "): ";
 
     if(number >= max){
