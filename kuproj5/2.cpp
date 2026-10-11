@@ -6,13 +6,13 @@
 using namespace std;
 
 uint16_t N;
-uint64_t a{1}, b{1}, fib;
+uint64_t a{1u}, b{1u}, fib;
 
 uint64_t factorial(const uint16_t n){
-    uint64_t result = 1;
+    uint64_t result = 1u;
     cout << __func__ << '(' << n << "): ";
 
-    if(n<1){
+    if(n<1u){
         return result;
     }
     for(auto i{2uz}; i<=n; i++){
@@ -23,7 +23,7 @@ uint64_t factorial(const uint16_t n){
 
 uint64_t fibonacci(const uint16_t n){
     cout << __func__ << '(' << n << "): ";
-    if(n <= 1){
+    if(n <= 1u){
         return n;
     }
     for(auto i{2uz}; i<n; ++i){
@@ -39,10 +39,10 @@ int main(){
 
     cin >> N;
         cout << factorial(N) << endl;
-        cout << factorial(0) << endl;
+        cout << factorial(0u) << endl;
 
     cin >> N;
         cout << fibonacci(N) << endl;
-        cout << fibonacci(0) << endl;
+        cout << fibonacci(0u) << endl;
     return 0;
 }

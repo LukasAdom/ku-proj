@@ -16,7 +16,7 @@ bool is_even(const int16_t n){
 
     cout << __func__ << '(' << n << "): ";    
 
-    if(!(n%2) == 0){
+    if(!(n%2u) == 0u){
         return false;
     }
     return true;
@@ -26,9 +26,9 @@ int16_t maximum(const int16_t a, const int16_t b, const int16_t c){ // Takes 3 n
     vector<int16_t> vec = {a,b,c};
     cout << __func__ << '(' << a << ", " << b << ", " << c << "): ";
 
-    for(auto i{0uz}; i + 1 < vec.size(); ++i){
-        if(vec[i]>vec[i+1]){
-            swap(vec[i],vec[i+1]);
+    for(auto i{0uz}; i + 1u < vec.size(); ++i){
+        if(vec[i]>vec[i+1u]){
+            swap(vec[i],vec[i+1u]);
         }
     }
     return vec.back();
@@ -36,7 +36,7 @@ int16_t maximum(const int16_t a, const int16_t b, const int16_t c){ // Takes 3 n
 
 double_t celsius_to_fahrenheit(const double_t c){
     cout << __func__ << '(' << c << "): ";
-    return c*9/5+32;
+    return c*9u/5u+32u;
 }
 
 int16_t clamp(const int16_t number, const int16_t min, const int16_t max){
