@@ -1,15 +1,13 @@
 #include <iostream>
 #include <cstdint>
-#include <vector>
-#include <math.h>
 
 using namespace std;
 
 uint16_t N;
-uint64_t a{1u}, b{1u}, fib;
+uint32_t a{1u}, b{1u}, fib;
 
-uint64_t factorial(const uint16_t n){
-    uint64_t result = 1u;
+uint32_t factorial(const uint16_t n){
+    uint32_t result = 1u;
     cout << __func__ << '(' << n << "): ";
 
     if(n<1u){
@@ -21,11 +19,11 @@ uint64_t factorial(const uint16_t n){
     return result;
 }
 
-uint64_t fibonacci(const uint16_t n){
+uint32_t fibonacci(const uint16_t n){
     cout << __func__ << '(' << n << "): ";
 
     struct fibStruct {
-        static uint64_t fib(const uint16_t u_){
+        static uint32_t fib(const uint16_t u_){
             if(u_ <= 1u){
                 return u_;
             }
