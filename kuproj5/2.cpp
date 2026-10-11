@@ -23,15 +23,16 @@ uint64_t factorial(const uint16_t n){
 
 uint64_t fibonacci(const uint16_t n){
     cout << __func__ << '(' << n << "): ";
-    if(n <= 1u){
-        return n;
-    }
-    for(auto i{2uz}; i<n; ++i){
-        fib = a + b;
-        a = b;
-        b = fib;
-    }
-    return fib;
+
+    struct fibStruct {
+        static uint64_t fib(const uint16_t u_){
+            if(u_ <= 1u){
+                return u_;
+            }
+            return fib(u_ - 1) + fib(u_ - 2);
+        }
+    };
+    return fibStruct::fib(n);
 }
 
 
