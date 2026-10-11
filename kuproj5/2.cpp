@@ -29,7 +29,7 @@ uint64_t fibonacci(const uint16_t n){
             if(u_ <= 1u){
                 return u_;
             }
-            return fib(u_ - 1) + fib(u_ - 2);
+            return fib(u_ - 1u) + fib(u_ - 2u);
         }
     };
     return fibStruct::fib(n);
