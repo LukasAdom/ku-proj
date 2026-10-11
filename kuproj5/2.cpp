@@ -4,19 +4,17 @@
 using namespace std;
 
 uint16_t N;
-uint32_t a{1u}, b{1u}, fib;
 
 uint32_t factorial(const uint16_t n){
-    uint32_t result = 1u;
     cout << __func__ << '(' << n << "): ";
 
-    if(n<1u){
-        return result;
-    }
-    for(auto i{2uz}; i<=n; i++){
-        result *= i;
-    }    
-    return result;
+    auto fac = [](const auto& self, const uint16_t f) -> uint32_t {
+        if(f<1u){
+            return 1u;
+        }
+        return f * self(self, f-1u);
+    };
+    return fac(fac,n);
 }
 
 uint32_t fibonacci(const uint16_t n){
