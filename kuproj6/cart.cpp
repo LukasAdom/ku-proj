@@ -10,14 +10,6 @@
 #include <math.h>
 
 #define __FLT_EVAL_METHOD__ 0
-const uint16_t MAX_MENU = 12u;
-
-uint16_t select;
-auto fullPrice = std::make_unique<float_t>(0.0f);
-auto num = std::make_unique<uint16_t>(0);
-auto amt = std::make_unique<uint16_t>(0);
-
-std::vector<std::string> itemNames {"Test1","test2","test3","test4","test5","test6","test7","test8","test9","test10","test11","test12"};
 
 struct item{
     std::string name;
@@ -42,6 +34,15 @@ struct cart{
         left = itemsLeft;
     }
 };
+const uint16_t MAX_MENU = 12u;
+
+uint16_t select;
+auto fullPrice = std::make_unique<float_t>(0.0f);
+auto num = std::make_unique<uint16_t>(0u);
+auto amt = std::make_unique<uint16_t>(0u);
+
+std::vector<std::string> itemNames {"Risotto","Miso Soup","Lomo Saltado","Burrito","Chicken Biryani","Pancakes","Pizza","Burger","Tacos","Croissants","Lasagna","Caesar Salad",
+"Sushi","Strawberry Shortcake","Strawberry Shortcake","Sushi Platter","Fajitas","Mango Sticky Rice","Cinnamon Rolls","Eggs Benedict","Creme Brulee","Ratatouille"};
 
 std::vector<item> displayItemVector;
 std::vector<cart> purchasedItemVector;
@@ -52,11 +53,11 @@ item displayedItem[MAX_MENU];
 void displayMenu(){
     for(auto i {0uz}; i < displayItemVector.size(); ++i){
         if(displayItemVector[i].left <= 0u){
-            std::cout << std::format("{:<10} {:.2f} EUR ({:<16}", " " + std::to_string(i + 1) + ". " + displayItemVector[i].name + " ",
-            displayItemVector[i].price, "ISPARDUOTA)");
+            std::cout << std::setw(42) << std::format("{:<10} {:.2f} EUR ({})", " " + std::to_string(i + 1) + ". " + displayItemVector[i].name + " ",
+            displayItemVector[i].price, "ISPARDUOTA");
         } else {
-            std::cout << std::format("{:<10} {:.2f} EUR ({}){:<17}", " " + std::to_string(i + 1) + ". " + displayItemVector[i].name + " ",
-            displayItemVector[i].price, displayItemVector[i].left," ");
+            std::cout << std::setw(42) << std::format("{:<10} {:.2f} EUR ({})", " " + std::to_string(i + 1) + ". " + displayItemVector[i].name + " ",
+            displayItemVector[i].price, displayItemVector[i].left);
         }
         if((i + 1u) % 3u == 0u){
             std::cout << "\n";
@@ -83,7 +84,7 @@ void addToCart(){
         if(*amt <= displayItemVector[*num-1].left){
                 purchased[pos + 1u].addCart(displayItemVector[*num-1u].name, displayItemVector[*num-1u].price, displayItemVector[*num-1].left);
                 displayItemVector[*num-1u].left -= *amt;
-                purchasedItemVector.push_back(purchased[pos + 1u]);
+                purchasedItemVector.push_back(purchased[pos + 1u]); // Adds new struct into another "purchased" vector, for later use when needing to view the cart.
             break;
         }
         std::cout << "Error: The amount is larger than the item's quantity\n";
@@ -91,16 +92,18 @@ void addToCart(){
 }
 
 void viewCart(){
-    fullPrice.reset(new float_t(0.0f));
+    if(purchasedItemVector.size() > 0){
+        fullPrice.reset(new float_t(0.0f));
 
-    for(auto i{0uz}; i < purchasedItemVector.size(); ++i){
-        std::cout << std::setprecision(2) << std::fixed << i+1 << ". " << purchasedItemVector[i].name << " " << purchasedItemVector[i].left << " x " 
-        << purchasedItemVector[i].price << " = " 
-        << purchasedItemVector[i].left * purchasedItemVector[i].price << "\n";
+        for(auto i{0uz}; i < purchasedItemVector.size(); ++i){
+            std::cout << std::setprecision(2) << std::fixed << i+1 << ". " << purchasedItemVector[i].name << " " << purchasedItemVector[i].left << " x " 
+            << purchasedItemVector[i].price << " = " 
+            << purchasedItemVector[i].left * purchasedItemVector[i].price << "\n";
 
-        *fullPrice += (purchasedItemVector[i].left * purchasedItemVector[i].price);
-    }
-    std::cout << std::setprecision(2) << std::fixed << "Is viso: " << *fullPrice << " EUR\n";
+            *fullPrice += (purchasedItemVector[i].left * purchasedItemVector[i].price);
+        }
+        std::cout << std::setprecision(2) << std::fixed << "Is viso: " << *fullPrice << " EUR\n";
+    } else { std::cout << "Error: Empty cart.\n"; }
 }
 
 void deleteCart(){
@@ -108,19 +111,23 @@ void deleteCart(){
     if(purchasedItemVector.size() > 0){
         std::cout << "Select what to remove: ";
         std::cin >> *num;
-        std::cout << "Select amount: ";
-        std::cin >> *amt;
-        if(*amt <= purchasedItemVector[*num - 1u].left){
-            purchasedItemVector[*num - 1u].left -= *amt;
+        for(;;){
+            std::cout << "Select amount: ";
+            std::cin >> *amt;
+            if(*amt <= purchasedItemVector[*num - 1u].left){
+                purchasedItemVector[*num - 1u].left -= *amt;
 
-            for(auto i{0uz}; i < displayItemVector.size(); ++i){
-                if(purchasedItemVector[*num - 1].name == displayItemVector[i].name){
-                    displayItemVector[i].left += *amt;
+                for(auto i{0uz}; i < displayItemVector.size(); ++i){
+                    if(purchasedItemVector[*num - 1].name == displayItemVector[i].name){
+                        displayItemVector[i].left += *amt; // Removing the item from cart adds the item back into the menu.
+                    }
                 }
-            }
-        }
-        if(purchasedItemVector[*num - 1u].left <= 0u){
-            purchasedItemVector.erase(purchasedItemVector.begin() + (*num - 1u));
+
+                if(purchasedItemVector[*num - 1u].left <= 0u){
+                    purchasedItemVector.erase(purchasedItemVector.begin() + (*num - 1u));
+                }
+            } else { std::cout << "Error: The amount is larger than the amount of quantity left..\n"; continue;}
+            break;
         }
     }
 }
@@ -132,13 +139,18 @@ void buyCart(){
 
         std::cout << "Aciu, kad pirkote!\n";
         
-    } else { std::cout << "Error: Empty cart\n"; }
+    } else { std::cout << "Error: Empty cart.\n"; }
 }
 
 int main(){
 
-    auto itemInit = [](){
+        if(MAX_MENU >= itemNames.size()){
+            std::cout << "Error: MAX_MENU is larger than the itemNames vector!\n";
+            return 0;
+        }
 
+    auto itemInit = [](){ // Initializes all of the names, prices and quantities. And all items have their prices and quantities randomly generated.
+    
         std::random_device rd;
         std::ranges::shuffle(itemNames,rd);
         std::uniform_real_distribution<float_t> dist(1.0f,9.9f);
@@ -147,14 +159,15 @@ int main(){
         for(auto i {0uz}; i < MAX_MENU; ++i){
             displayedItem[i].createItem(itemNames.front(), dist(rd), lDist(rd));
             displayItemVector.push_back(displayedItem[i]);
-            itemNames.erase(itemNames.begin());
+            itemNames.erase(itemNames.begin()); // Inserts the struct into a vector, for later.
         }
     };
     itemInit();
 
-    std::cout << "1. Rodyti parduotuve  2. Deti i krepseli  3. Salinti is krepselio\n";
+    std::cout << "\n1. Rodyti parduotuve  2. Deti i krepseli  3. Salinti is krepselio\n";
     std::cout << "4. Rodyti krepseli    5. Apmoketi         6. Iseiti\n";
     for(;;){
+
         std::cout << "\nPasirinkite (1-6): ";
         std::cin >> select;
         switch(select){
@@ -183,7 +196,8 @@ int main(){
             break;
 
             default:
-            break;
+            std::cout << "Error: Wrong input.\n";
+            continue;;
 
         }
         break;
