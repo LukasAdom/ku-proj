@@ -1,7 +1,5 @@
 #include <iostream>
 #include <cstdint>
-#include <array>
-#include <stdexcept>
 
 int32_t data[6] = {4,9,2,9,1,6};
 
