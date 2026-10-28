@@ -34,7 +34,7 @@ struct cart{
         left = itemsLeft;
     }
 };
-const uint16_t MAX_MENU = 12u;
+const uint16_t MAX_MENU = 12u; // The maximum amount of objects you can see on the menu.
 
 uint16_t select;
 auto fullPrice = std::make_unique<float_t>(0.0f);
@@ -158,8 +158,8 @@ int main(){
 
         for(auto i {0uz}; i < MAX_MENU; ++i){
             displayedItem[i].createItem(itemNames.front(), dist(rd), lDist(rd));
-            displayItemVector.push_back(displayedItem[i]);
-            itemNames.erase(itemNames.begin()); // Inserts the struct into a vector, for later.
+            displayItemVector.push_back(displayedItem[i]); // Inserts the struct into a vector, for later.
+            itemNames.erase(itemNames.begin() + i);
         }
     };
     itemInit();
