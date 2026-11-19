@@ -11,14 +11,8 @@ bool trikampis(const int16_t a, const int16_t b, const int16_t c){
 
 int main(){
 
-    std::cout << "iveskite a: ";
-    std::cin >> a;
-
-    std::cout << "iveskite b: ";
-    std::cin >> b;
-
-    std::cout << "iveskite c: ";
-    std::cin >> c;
+    std::cout << "iveskite a, b ir c: ";
+    std::cin >> a >> b >> c;
 
     std::cout << "Is duotu atkarpu, trikampio sudarymas yra: " << std::boolalpha << trikampis(a,b,c);
 
